@@ -11,6 +11,10 @@ export default {
         background: "var(--background)",
         foreground: "var(--foreground)",
       },
+      fontFamily: {
+        "Antic": ["Antic Didone", "sans-serif"],
+      }
+
     },
   },
   plugins: [],
