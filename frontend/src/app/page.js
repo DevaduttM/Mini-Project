@@ -3,7 +3,6 @@ import Landing from "@/components/Landing";
 import Image from "next/image";
 import  {motion}  from "framer-motion";
 import About from "@/components/About";
-
 export default function Home() {
   return (
     <>
