@@ -10,7 +10,7 @@ const Page = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // 📌 Function to handle email/password signup
+  //  Function to handle email/password signup
   const handleSignup = async (email, password) => {
     setLoading(true);
     setError("");
@@ -25,7 +25,7 @@ const Page = () => {
       const user = await signupUser(email, password);
       console.log("✅ User signed up:", user);
       alert("🎉 Signup Successful!");
-      router.replace("/home"); // ✅ Prevents users from going back to signup after signup
+      router.replace("/home"); //  Prevents users from going back to signup after signup
     } catch (error) {
       console.error("❌ Signup Error:", error.message);
       setError("⚠️ " + error.message);
@@ -43,7 +43,7 @@ const Page = () => {
       const user = await loginWithGoogle();
       console.log("✅ Google Sign-In Successful:", user);
       alert("🎉 Google Sign-In Successful!");
-      router.replace("/home"); // ✅ Prevents users from going back to signup after Google sign-in
+      router.replace("/home"); // Prevents users from going back to signup after Google sign-in
     } catch (error) {
       console.error("❌ Google Sign-In Error:", error.message);
       setError("⚠️ Google Sign-In failed. Try again.");

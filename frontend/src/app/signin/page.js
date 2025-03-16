@@ -10,7 +10,7 @@ const Page = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // 📌 Function to handle email/password login
+  // Function to handle email/password login
   const handleLogin = async (email, password) => {
     setLoading(true);
     setError("");
@@ -25,7 +25,7 @@ const Page = () => {
       const user = await loginUser(email, password);
       console.log("✅ User logged in:", user);
       alert("🎉 Login Successful!");
-      router.replace("/home"); // ✅ Replaces history to prevent back navigation
+      router.replace("/home"); // Replaces history to prevent back navigation
     } catch (error) {
       console.error("❌ Login Error:", error.message);
       setError("⚠️ " + error.message);
@@ -34,7 +34,7 @@ const Page = () => {
     }
   };
 
-  // 📌 Function to handle Google Sign-In
+  //  Function to handle Google Sign-In
   const handleGoogleLogin = async () => {
     setLoading(true);
     setError("");
@@ -43,7 +43,7 @@ const Page = () => {
       const user = await loginWithGoogle();
       console.log("✅ Google Sign-In Successful:", user);
       alert("🎉 Google Sign-In Successful!");
-      router.replace("/home"); // ✅ Replaces history to prevent back navigation
+      router.replace("/home"); // 
     } catch (error) {
       console.error("❌ Google Sign-In Error:", error.message);
       setError("⚠️ Google Sign-In failed. Try again.");

@@ -12,7 +12,7 @@ const Signin = () => {
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
 
-    // 📌 Function to handle email/password login
+    //  Function to handle email/password login
     const handleEmailLogin = async (e) => {
         e.preventDefault();
         setError("");
@@ -26,9 +26,9 @@ const Signin = () => {
 
         try {
             const user = await loginUser(email, password);
-            console.log("✅ User logged in:", user);
+            console.log(" User logged in:", user);
             alert("🎉 Login Successful!");
-            router.replace('/home'); // ✅ Redirect to home
+            router.replace('/home'); // Redirect to home
         } catch (error) {
             console.error("❌ Login Error:", error.message);
             setError("⚠️ Invalid email or password. Try again.");
@@ -37,14 +37,14 @@ const Signin = () => {
         setLoading(false);
     };
 
-    // 📌 Function to handle Google Sign-In
+    //  Function to handle Google Sign-In
     const handleGoogleLogin = async () => {
         setLoading(true);
         setError("");
 
         try {
             const user = await loginWithGoogle();
-            console.log("✅ Google Sign-In Successful:", user);
+            console.log(" Google Sign-In Successful:", user);
             alert("🎉 Google Sign-In Successful!");
             router.replace('/home'); // ✅ Redirect to home
         } catch (error) {

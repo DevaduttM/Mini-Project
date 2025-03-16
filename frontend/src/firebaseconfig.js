@@ -28,18 +28,18 @@ const firebaseConfig = {
   measurementId: "G-WLNKGLJZPM"
 };
 
-// 🔹 Initialize Firebase
+//  Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 const googleProvider = new GoogleAuthProvider();
 
-// ✅ Ensure Google Sign-In Pop-Up only selects accounts (optional)
+//  Ensure Google Sign-In Pop-Up only selects accounts (optional)
 googleProvider.setCustomParameters({
   prompt: "select_account"
 });
 
-// 📌 User Signup (Email & Password)
+// User Signup (Email & Password)
 const signupUser = async (email, password) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -51,7 +51,7 @@ const signupUser = async (email, password) => {
   }
 };
 
-// 📌 User Login (Email/Password)
+//  User Login (Email/Password)
 const loginUser = async (email, password) => {
   try {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
@@ -63,7 +63,7 @@ const loginUser = async (email, password) => {
   }
 };
 
-// 📌 Google Sign-In
+//  Google Sign-In
 const loginWithGoogle = async () => {
   try {
     const result = await signInWithPopup(auth, googleProvider);
@@ -75,7 +75,7 @@ const loginWithGoogle = async () => {
   }
 };
 
-// 📌 User Logout
+// User Logout
 const logoutUser = async () => {
   try {
     await signOut(auth);
@@ -86,7 +86,7 @@ const logoutUser = async () => {
   }
 };
 
-// 📌 Add Interview Result to Firestore
+//  Add Interview Result to Firestore
 const addInterviewResult = async (userId, score, feedback) => {
   try {
     await addDoc(collection(db, "interviewResults"), {
@@ -102,7 +102,7 @@ const addInterviewResult = async (userId, score, feedback) => {
   }
 };
 
-// 📌 Fetch Interview Results from Firestore
+//  Fetch Interview Results from Firestore
 const getInterviewResults = async (userId) => {
   try {
     const q = query(collection(db, "interviewResults"), where("userId", "==", userId));
@@ -118,6 +118,6 @@ const getInterviewResults = async (userId) => {
   }
 };
 
-// 🔹 Export Modules
+//  Export Modules
 export { auth, db, signupUser, loginUser, loginWithGoogle, logoutUser, addInterviewResult, getInterviewResults };
 
