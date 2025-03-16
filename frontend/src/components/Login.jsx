@@ -22,6 +22,7 @@ const Signup = () => {
                         <h2 className='text-black p-1 text-sm lg:text-[1rem]'>Don't have an account? <Link href = "/signup" className='text-blue-500 cursor-pointer'>Sign Up</Link></h2>
                         <input className='w-[80%] h-[10%] rounded-2xl px-5 text-black text-sm lg:text-lg bg-[#c97a62] focus:border-[#5E3D22] cursor-pointer' type="submit"  />
                     </form>
+                    
                 </div>
             </div>
         </div>
