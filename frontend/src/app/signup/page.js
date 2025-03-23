@@ -25,7 +25,7 @@ const Page = () => {
       const user = await signupUser(email, password);
       console.log("✅ User signed up:", user);
       alert("🎉 Signup Successful!");
-      router.replace("/home"); //  Prevents users from going back to signup after signup
+      router.replace("/signin"); //  Prevents users from going back to signup after signup
     } catch (error) {
       console.error("❌ Signup Error:", error.message);
       setError("⚠️ " + error.message);

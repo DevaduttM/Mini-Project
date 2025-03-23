@@ -25,7 +25,7 @@ const Page = () => {
       const user = await loginUser(email, password);
       console.log("✅ User logged in:", user);
       alert("🎉 Login Successful!");
-      router.replace("/home"); // Replaces history to prevent back navigation
+      router.replace("/landing"); // Replaces history to prevent back navigation
     } catch (error) {
       console.error("❌ Login Error:", error.message);
       setError("⚠️ " + error.message);
@@ -43,7 +43,7 @@ const Page = () => {
       const user = await loginWithGoogle();
       console.log("✅ Google Sign-In Successful:", user);
       alert("🎉 Google Sign-In Successful!");
-      router.replace("/home"); // 
+      router.replace("/landing"); // 
     } catch (error) {
       console.error("❌ Google Sign-In Error:", error.message);
       setError("⚠️ Google Sign-In failed. Try again.");
