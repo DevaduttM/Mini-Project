@@ -7,7 +7,7 @@ from tensorflow.keras.preprocessing.image import img_to_array
 
 os.environ["TF_ENABLE_ONEDNN_OPTS"] = "0"
 
-model_path = "./model_filter.h5"
+model_path = "./Models/model_filter.h5"
 model = load_model(model_path)
 
 emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']

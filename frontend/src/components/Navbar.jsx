@@ -7,7 +7,7 @@ const Navbar = () => {
     const navitems = [
         {
             name: "Home",
-            link: "/"
+            link: "#home"
         },
         {
             name: "About",
@@ -24,7 +24,7 @@ const Navbar = () => {
     ]
   return (
     <>
-        <div className="h-[9vh] w-[80vw] flex justify-around items-center fixed top-10 rounded-full bg-white border-[1px] border-black z-10">
+        <div className="h-[9vh] w-[80vw] flex justify-around items-center fixed top-10 rounded-full bg-white border-[1px] border-black z-20 overflow-hidden">
             <Image
                 src = "/logo.png"
                 alt='logo'
