@@ -7,9 +7,8 @@ const First = () => {
   const router = useRouter(); // ✅ Initialize Router
 
   return (
-    <div className="relative w-full min-h-screen bg-[#F9F7F2] border border-black shadow-lg flex flex-col items-center px-4 md:px-12">
-      {/* Navigation Bar */}
-      <div className="w-full max-w-[1208px] h-[85px] mt-6 bg-white border border-black shadow-md rounded-full flex items-center justify-between px-6 md:px-10">
+    <div className="relative w-full min-h-screen bg-[#F9F7F2] flex flex-col items-center px-4 md:px-12">
+      <div className="fixed top-3 z-20 w-full max-w-[1208px] h-[85px] mt-6 bg-white border border-black shadow-md rounded-full flex items-center justify-between px-6 md:px-10">
         <div className="flex items-center">
           <Image src="/logo.png" alt="logo" width={42} height={42} />
           <h1 className="ml-2 text-lg md:text-2xl font-Antic text-transparent bg-gradient-to-r from-[#D28066] via-[#5E3D22] to-[#2B1C0F] bg-clip-text">
