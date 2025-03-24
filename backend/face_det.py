@@ -1,7 +1,7 @@
 import cv2
 import os
 
-video_path = "./videos/videoplayback.mp4"
+video_path = "./videos/test2.mp4"
 if not os.path.exists(video_path):
     raise FileNotFoundError(f"Video file not found: {video_path}")
 
@@ -36,7 +36,7 @@ while True:
             face_filename = os.path.join(output_dir, f"face_{frame_count}_{i}.jpg")
             cv2.imwrite(face_filename, face_image)
 
-        # cv2.imshow("Face Detection", frame)
+        cv2.imshow("Face Detection", frame)
 
     frame_count += 1
 

@@ -7,7 +7,7 @@ const Navbar = () => {
     const navitems = [
         {
             name: "Home",
-            link: "/"
+            link: "#home"
         },
         {
             name: "About",
@@ -24,7 +24,7 @@ const Navbar = () => {
     ]
   return (
     <>
-        <div className="h-[9vh] w-[80vw] flex justify-around items-center fixed top-10 rounded-full bg-white border-[1px] border-black z-10">
+        <div className="h-[9vh] w-[80vw] flex justify-around items-center fixed top-10 rounded-full bg-white border-[1px] border-black z-20 overflow-hidden">
             <Image
                 src = "/logo.png"
                 alt='logo'
@@ -35,7 +35,7 @@ const Navbar = () => {
             {navitems.map((item, index) => (
                 <a key={index} href={item.link} className="bg-gradient-to-r from-[#D28066] via-[#5E3D22] to-[#2B1C0F] text-transparent bg-clip-text font-Antic text-2xl">{item.name}</a>
             ))}
-            <Link href="/signin" className="bg-gradient-to-r from-[#D28066] via-[#5E3D22] to-[#2B1C0F] rounded-full w-[10%] h-[60%] flex justify-center items-center font-Antic text-2xl">Login</Link>
+           {/* <Link href="/signin" className="bg-gradient-to-r from-[#D28066] via-[#5E3D22] to-[#2B1C0F] rounded-full w-[10%] h-[60%] flex justify-center items-center font-Antic text-2xl">Login</Link> */}
         </div>
     </>
   )
