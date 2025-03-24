@@ -13,6 +13,7 @@ export default {
       },
       fontFamily: {
         "Antic": ["Antic Didone", "sans-serif"],
+        "Convergence": ["Convergence", "sans-serif"],
       }
 
     },
