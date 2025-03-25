@@ -1,5 +1,7 @@
 import ollama
 
+qn_list = []
+
 def generate_questions(job_role):
     """
     Generate 5 technical interview questions based on the resume and job role using Mistral via Ollama.
@@ -17,4 +19,15 @@ Generate 5 concise, one-line technical interview questions relevant to the role 
     # Split questions by newline and return
     questions = [q.strip() for q in result.split("\n") if q.strip()]
     
+    for i in range(5):
+        qn_list.append(questions[i])
+    
     return questions[:5]  # Return only 5 questions
+
+def get_qns():
+    print(qn_list)
+    return qn_list
+
+generate_questions("frontend developer")
+get_qns()
+
