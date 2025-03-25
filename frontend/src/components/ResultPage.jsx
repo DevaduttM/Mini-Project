@@ -7,7 +7,7 @@ import ProgressBar from './ProgressBar'
 
 const ResultPage = () => {
 
-    const [initial, setInitial] = useState(false);
+    const [initial, setInitial] = useState(true);
     const [loading, setLoading] = useState(false);
 
     const generateResults = async () => {

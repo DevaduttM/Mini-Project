@@ -14,14 +14,7 @@ export default function LandingPage() {
         <Landing />
         {/* <About /> */}
       </motion.div>
-      <motion.div 
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.8 }}
-      className="w-screen h-screen justify-center items-center flex bg-[#F9F7F2] flex-col">
-        {/* <Landing /> */}
-        <About />
-      </motion.div>
+
     </>
   );
 }

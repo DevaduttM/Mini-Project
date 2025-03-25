@@ -7,6 +7,4 @@ def extract_audio(input_video, output_audio):
     except Exception as e:
         print(f"Error: {e}")
 
-# Example usage
-extract_audio("qn1.webm", "output_audio.mp3")
  

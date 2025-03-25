@@ -8,6 +8,8 @@ from voice import extract_audio
 from speechrec import transcribe
 from llama_model import generate_questions
 import joblib
+from emotion_confidence import calculate_emotion_score
+from voice_emotion_confidence import calculate_voice_score
 
 app = Flask(__name__)
 CORS(app)
@@ -82,9 +84,10 @@ def upload_video():
 
         results = predict_emotion(output_dir)
         delete_images_in_directory(output_dir)
+        score = calculate_emotion_score()
 
         print("Predictions:", results)
-        return jsonify({"message": "Success", "predictions": results})
+        return jsonify({"message": "Success", "predictions": results, "score": score})
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -106,15 +109,17 @@ def process_videos():
 
         extract_audio(video_path, audio_path)
         transcribe()
+        score = calculate_emotion_score()
+        vscore = calculate_voice_score()
 
         processed_files.append(audio_path)
 
-    return jsonify({"processed_files": processed_files})
+    return jsonify({"Face score": score, "Voice score": vscore})
 
 @app.route("/question", methods=["GET"])
 def gen_qn():
     try:
-        job_role = request.args.get("job_role")  # ✅ Correct way to get query parameters
+        job_role = request.args.get("job_role")
 
         if not job_role:
             return jsonify({"error": "Missing job_role"}), 400

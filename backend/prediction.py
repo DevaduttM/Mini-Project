@@ -14,6 +14,8 @@ model = load_model(model_path)
 
 emotion_labels = ['Angry', 'Disgust', 'Fear', 'Happy', 'Sad', 'Surprise', 'Neutral']
 
+total_emotions = []
+
 def predict_emotion(input_dir="faces"):  
     predictions = []
     emotion_count = Counter()
@@ -39,33 +41,15 @@ def predict_emotion(input_dir="faces"):
             emotion_count[emotion] += 1
             total_images += 1
 
-    emotion_percentages = {emotion: str(round((count / total_images) * 100, 2)) + "%" for emotion, count in emotion_count.items()} if total_images > 0 else {}
+    emotion_percentages = {emotion: round((count / total_images) * 100, 2) for emotion, count in emotion_count.items()} if total_images > 0 else {}
+    total_emotions.append(emotion_percentages)
 
     return emotion_percentages
 
-# def predict_speech_emotion(audio_path):
-#     log_reg = joblib.load("logistic_regression_model.pkl")
-# import librosa
-# from sklearn.preprocessing import StandardScaler
-# from sklearn.decomposition import PCA
-# label_encoder = LabelEncoder()
 
-# def predict_emotion(audio_path, model):
-#     y, sr = librosa.load(audio_path, sr=None)
-#     mfcc = librosa.feature.mfcc(y=y, sr=sr, n_mfcc=13)
-#     mfcc_mean = np.mean(mfcc, axis=1).reshape(1, -1)
+def tot_emotion():
+    return total_emotions
 
-#     # Apply the same preprocessing
-#     scaler = StandardScaler()
-#     mfcc_scaled = scaler.transform(mfcc_mean)
-#     pca = PCA(n_components=10)
-#     mfcc_pca = pca.transform(mfcc_scaled)
-
-#     # Predict using the chosen model
-#     predicted_label = model.predict(mfcc_pca)
-#     emotion = label_encoder.inverse_transform(predicted_label)[0]
-    
-#     return emotion
 
 if __name__ == "__main__":
     results, percentages = predict_emotion()

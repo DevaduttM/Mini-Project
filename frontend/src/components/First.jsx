@@ -46,9 +46,9 @@ const First = () => {
           <div className="w-full flex justify-center">
             <button
               onClick={() => router.push("/signin")}  // ✅ Navigates to Login Page
-              className="mt-8 w-48 md:w-64 h-12 md:h-16 bg-gradient-to-r from-[#EFEBE2] via-[#DAAF88] to-[#6C3E18] shadow-lg flex justify-center items-center rounded-md cursor-pointer hover:opacity-80 transition"
+              className="z-10 mt-8 w-48 md:w-64 h-12 md:h-16 bg-gradient-to-r from-[#EFEBE2] via-[#DAAF88] to-[#6C3E18] shadow-lg flex justify-center items-center rounded-md cursor-pointer hover:opacity-80 transition"
             >
-              <p className="text-lg md:text-2xl font-Antic text-white shadow-md">Login</p>
+              <p className="text-lg md:text-2xl font-Antic text-white ">Login</p>
             </button>
           </div>
         </div>
