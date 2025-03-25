@@ -4,12 +4,18 @@ import os
 from face_det import detect_faces
 from prediction import predict_emotion
 import subprocess
+from voice import extract_audio
+from speechrec import transcribe
+from llama_model import generate_questions
+import joblib
 
 app = Flask(__name__)
 CORS(app)
 
 UPLOAD_FOLDER = "uploads"
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
+
+AUDIO_FOLDER = "audio"
 
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
@@ -82,6 +88,44 @@ def upload_video():
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
+    
+
+    
+@app.route("/results", methods=["GET"])
+def process_videos():
+    os.makedirs(AUDIO_FOLDER, exist_ok=True)
+
+    video_files = sorted([f for f in os.listdir(UPLOAD_FOLDER) if f.endswith(".webm")])
+
+    selected_videos = video_files[:3]
+
+    processed_files = []
+    for video in selected_videos:
+        video_path = os.path.join(UPLOAD_FOLDER, video)
+        audio_path = os.path.join(AUDIO_FOLDER, video.replace(".webm", ".mp3"))
+
+        extract_audio(video_path, audio_path)
+        transcribe()
+
+        processed_files.append(audio_path)
+
+    return jsonify({"processed_files": processed_files})
+
+@app.route("/question", methods=["GET"])
+def gen_qn():
+    try:
+        job_role = request.args.get("job_role")  # ✅ Correct way to get query parameters
+
+        if not job_role:
+            return jsonify({"error": "Missing job_role"}), 400
+
+        questions = generate_questions(job_role)
+        
+        return jsonify({"questions": questions})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
 
 
 #     try:

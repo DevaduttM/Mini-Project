@@ -2,6 +2,7 @@
 import { useRef, useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import Loading from "./Loading";
+import { useRouter } from "next/navigation";
 
 const VideoRecorder = ({ message }) => {
   const videoRef = useRef(null);
@@ -15,18 +16,22 @@ const VideoRecorder = ({ message }) => {
   const [jobRole, setJobRole] = useState("");
   const [qnIndex, setQnIndex] = useState(-1);
   const [loading, setLoading] = useState(false);
+  const [loadingqn, setLoadingQn] = useState(false);
+  const [Questions, setQuestions] = useState([]);
 
-  const Questions = [
-    { qn1: "What are the key differences between Next.js and React?" },
-    { qn2: "How does useEffect work in React and when should you use it?" },
-    {
-      qn3: "What are the advantages of using Docker in a web development project?",
-    },
-    { qn4: "Can you explain the concept of memoization in JavaScript?" },
-    {
-      qn5: "What are the different types of HTTP status codes and their meanings?",
-    },
-  ];
+  const router = useRouter();
+
+  // const Questions = [
+  //   { qn1: "What are the key differences between Next.js and React?" },
+  //   { qn2: "How does useEffect work in React and when should you use it?" },
+  //   {
+  //     qn3: "What are the advantages of using Docker in a web development project?",
+  //   },
+  //   { qn4: "Can you explain the concept of memoization in JavaScript?" },
+  //   {
+  //     qn5: "What are the different types of HTTP status codes and their meanings?",
+  //   },
+  // ];
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -101,6 +106,7 @@ const VideoRecorder = ({ message }) => {
       console.log("Stopping recording...");
       mediaRecorderRef.current.stop();
       setCapturing(false);
+      router.push("/results");
     }
 
     if (stream) {
@@ -180,15 +186,38 @@ const VideoRecorder = ({ message }) => {
     }
   };
 
-  const handleStartInterview = (e) => {
-    jobRole === "" ? alert("Please enter your job role.") : setInitial(false);
+  const handleStartInterview = async (jobRole) => {
+    if (jobRole === "") {
+      alert("Please enter your job role.");
+      return;
+    }
+  
+    setInitial(false);
     console.log("Job Role:", jobRole);
+  
+    try {
+      setLoadingQn(true);
+      const response = await axios.get("http://127.0.0.1:5000/question", {
+        params: { job_role: jobRole }, 
+      });
+      setQuestions(response.data.questions);
+      console.log("Questions:", response.data.questions);
+      setLoadingQn(false);
+      return response.data.questions;
+    } catch (error) {
+      console.error("Error fetching questions:", error.response?.data || error.message);
+      setLoadingQn(false);
+      return [];
+    }
   };
+  
   console.log("Upload Status:", uploadStatus);
+  console.log(jobRole)
 
   return (
     <>
-      {loading && <Loading />}
+      {loading && <Loading message={"Saving Your Response ..."} />}
+      {loadingqn && <Loading message={"Generating Questions ..."} />}
       <div
         className={`relative h-screen w-screen flex items-start justify-center bg-[#F9F7F2] overflow-hidden`}
       >
@@ -243,7 +272,7 @@ const VideoRecorder = ({ message }) => {
               className={`${
                 initial ? `flex` : `hidden`
               } bg-[#696969] text-white px-4 py-2 rounded-lg mt-5`}
-              onClick={(e) => handleStartInterview()}
+              onClick={(e) => handleStartInterview(jobRole)}
             >
               Start Interview
             </button>
