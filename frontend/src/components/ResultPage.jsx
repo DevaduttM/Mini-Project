@@ -9,12 +9,14 @@ const ResultPage = () => {
 
     const [initial, setInitial] = useState(true);
     const [loading, setLoading] = useState(false);
+    const [results, setResults] = useState([]);
 
     const generateResults = async () => {
         try{
             setLoading(true);
             const response = await axios.get('http://localhost:5000/results');
             console.log("Results:", response.data);
+            setResults(Object.values(response.data));
             setLoading(false);
             setInitial(false);
         }
@@ -22,6 +24,9 @@ const ResultPage = () => {
             console.error("Error generating results:", error);
         }
     }
+
+    const overallScore = ((results?.[0] ?? 0) + (results?.[1] ?? 0) + (results?.[2] ?? 0))/3;
+
 
   return (
     <>
@@ -59,22 +64,22 @@ const ResultPage = () => {
                     <div className="h-[45%] w-full flex items-center justify-center gap-10">
                         <div className="h-full w-[45%] bg-[#ffffff] shadow-lg flex-col flex gap-5 justify-center items-center rounded-lg">
                             <h1 className='text-gray-700 text-2xl'>Your Overall Score</h1>
-                            <Progress percentage={80} />
+                            <Progress percentage={overallScore} />
                         </div>
                         <div className="h-full w-[45%] bg-[#ffffff] shadow-lg flex flex-col justify-center items-center rounded-lg">
                             <h1 className='text-gray-700 text-2xl'>Your Score Distribution</h1>
                             <div className="w-[90%] flex justify-center mt-6 items-start flex-col">
-                                <p className='text-lg text-black'>Overall Expression</p>
+                                <p className='text-lg text-black'>Facial Expression</p>
                             </div>
-                                <ProgressBar percentage={80} />
+                            <ProgressBar percentage={results?.[0] ?? 0} />
                             <div className="w-[90%] flex justify-center mt-6 items-start flex-col">
                                 <p className='text-lg text-black'>Speech Confidence</p>
                             </div>
-                                <ProgressBar percentage={80} />
+                            <ProgressBar percentage={results?.[1] ?? 0} />
                             <div className="w-[90%] flex justify-center mt-6 items-start flex-col">
                                 <p className='text-lg text-black'>Correctness of Response</p>
                             </div>
-                                <ProgressBar percentage={80} />
+                            <ProgressBar percentage={results?.[2] ?? 0} />
                         </div>
                     </div>
                 </div>

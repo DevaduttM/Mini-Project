@@ -1,20 +1,20 @@
 import { initializeApp } from "firebase/app";
-import { 
-  getAuth, 
-  GoogleAuthProvider, 
-  signInWithPopup, 
-  createUserWithEmailAndPassword, 
-  signInWithEmailAndPassword, 
-  signOut 
+import {
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
 } from "firebase/auth";
 
-import { 
-  getFirestore, 
-  collection, 
-  addDoc, 
-  getDocs, 
-  query, 
-  where 
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where,
 } from "firebase/firestore";
 
 // 🔹 Firebase Configuration
@@ -25,7 +25,7 @@ const firebaseConfig = {
   storageBucket: "oraculum-e46a9.appspot.com",
   messagingSenderId: "571411027620",
   appId: "1:571411027620:web:5b13d614ac7592b5e17831",
-  measurementId: "G-WLNKGLJZPM"
+  measurementId: "G-WLNKGLJZPM",
 };
 
 //  Initialize Firebase
@@ -36,13 +36,17 @@ const googleProvider = new GoogleAuthProvider();
 
 //  Ensure Google Sign-In Pop-Up only selects accounts (optional)
 googleProvider.setCustomParameters({
-  prompt: "select_account"
+  prompt: "select_account",
 });
 
 // User Signup (Email & Password)
 const signupUser = async (email, password) => {
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
     console.log("User signed up:", userCredential.user);
     return userCredential.user;
   } catch (error) {
@@ -54,7 +58,11 @@ const signupUser = async (email, password) => {
 //  User Login (Email/Password)
 const loginUser = async (email, password) => {
   try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
     console.log("User logged in:", userCredential.user);
     return userCredential.user;
   } catch (error) {
@@ -105,7 +113,10 @@ const addInterviewResult = async (userId, score, feedback) => {
 //  Fetch Interview Results from Firestore
 const getInterviewResults = async (userId) => {
   try {
-    const q = query(collection(db, "interviewResults"), where("userId", "==", userId));
+    const q = query(
+      collection(db, "interviewResults"),
+      where("userId", "==", userId)
+    );
     const querySnapshot = await getDocs(q);
     let results = [];
     querySnapshot.forEach((doc) => {
@@ -119,5 +130,13 @@ const getInterviewResults = async (userId) => {
 };
 
 //  Export Modules
-export { auth, db, signupUser, loginUser, loginWithGoogle, logoutUser, addInterviewResult, getInterviewResults };
-
+export {
+  auth,
+  db,
+  signupUser,
+  loginUser,
+  loginWithGoogle,
+  logoutUser,
+  addInterviewResult,
+  getInterviewResults,
+};

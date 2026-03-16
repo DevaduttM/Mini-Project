@@ -1,0 +1,26 @@
+Flask==2.2.5
+Flask-Cors==5.0.0
+numpy==1.26.4
+opencv-python==4.8.1.78
+tensorflow==2.10.0
+scikit-learn==1.1.1
+joblib==1.4.2
+librosa==0.11.0
+openai-whisper==20240930
+deep-translator==1.11.4
+ffmpeg-python==0.2.0
+requests==2.32.4
+spacy==3.8.4
+en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl#sha256=1932429db727d4bff3deed6b34cfc05df17794f4a52eeb26cf8928f7c1a0fb85
+ollama==0.4.7
+matplotlib==3.8.1
+pandas==1.5.3
+seaborn==0.13.0
+scikit-image==0.25.2
+ipython==8.17.2
+scipy==1.15.2
+audiomentations==0.40.0
+soundfile==0.13.1
+torch==2.1.0+cu118
+torchvision==0.16.0+cu118
+torchaudio==2.1.0+cu118

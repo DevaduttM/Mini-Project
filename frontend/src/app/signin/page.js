@@ -24,7 +24,7 @@ const Page = () => {
     try {
       const user = await loginUser(email, password);
       console.log("✅ User logged in:", user);
-      alert("🎉 Login Successful!");
+      alert("Login Successful!");
       router.replace("/landing"); // Replaces history to prevent back navigation
     } catch (error) {
       console.error("❌ Login Error:", error.message);

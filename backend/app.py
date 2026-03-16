@@ -10,6 +10,7 @@ from llama_model import generate_questions
 import joblib
 from emotion_confidence import calculate_emotion_score
 from voice_emotion_confidence import calculate_voice_score
+from evaluate_answers import calc_text_score
 
 app = Flask(__name__)
 CORS(app)
@@ -111,10 +112,11 @@ def process_videos():
         transcribe()
         score = calculate_emotion_score()
         vscore = calculate_voice_score()
+        tscore = calc_text_score()
 
         processed_files.append(audio_path)
 
-    return jsonify({"Face score": score, "Voice score": vscore})
+    return jsonify({"Face score": score, "Voice score": vscore, "Text score": tscore})
 
 @app.route("/question", methods=["GET"])
 def gen_qn():
@@ -124,9 +126,9 @@ def gen_qn():
         if not job_role:
             return jsonify({"error": "Missing job_role"}), 400
 
-        questions = generate_questions(job_role)
-        
-        return jsonify({"questions": questions})
+        payload = generate_questions(job_role)
+
+        return jsonify(payload)
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500

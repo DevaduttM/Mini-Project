@@ -1,68 +1,56 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";  // ✅ Import useRouter
+import { useRouter } from "next/navigation";
 
 const First = () => {
-  const router = useRouter(); // ✅ Initialize Router
+  const router = useRouter();
 
   return (
-    <div className="relative w-full min-h-screen bg-[#F9F7F2] flex flex-col items-center px-4 md:px-12">
-      <div className="fixed top-3 z-20 w-full max-w-[1208px] h-[85px] mt-6 bg-white border border-black shadow-md rounded-full flex items-center justify-between px-6 md:px-10">
-        <div className="flex items-center">
-          <Image src="/logo.png" alt="logo" width={42} height={42} />
-          <h1 className="ml-2 text-lg md:text-2xl font-Antic text-transparent bg-gradient-to-r from-[#D28066] via-[#5E3D22] to-[#2B1C0F] bg-clip-text">
-            Oraculum
-          </h1>
-        </div>
-        <nav className="flex gap-6 md:gap-10">
-          {["Home", "About", "Features", "Contact us"].map((item, index) => (
-            <p
-              key={index}
-              className="text-sm md:text-lg font-Antic text-transparent bg-gradient-to-r from-[#D28066] via-[#5E3D22] to-[#2B1C0F] bg-clip-text cursor-pointer"
-            >
-              {item}
+    <div id="home" className="relative min-h-screen w-full overflow-hidden bg-[#F9F7F2]">
+      <div className="pointer-events-none absolute -left-20 top-6 h-72 w-72 rounded-full bg-[#E9D6C5]/65 blur-3xl" />
+      <div className="pointer-events-none absolute -right-16 bottom-10 h-80 w-80 rounded-full bg-[#D9B18B]/45 blur-3xl" />
+
+      <div className="relative mx-auto flex w-[92vw] max-w-7xl flex-col justify-center py-20 md:py-24">
+
+        <section className="grid grid-cols-1 items-center gap-12 md:grid-cols-2 md:gap-16 mt-16">
+          <div>
+            <p className="w-fit rounded-full border border-[#D6BCA6] bg-[#F5ECE3] px-4 py-1 font-Convergence text-xs uppercase tracking-[0.16em] text-[#5E3D22]">
+              AI Interview Preparation
             </p>
-          ))}
-        </nav>
-      </div>
-      <div className="absolute top-[25%] left-0 w-full h-14 bg-gradient-to-r from-[#EFEBE2] via-[#DAAF88] to-[#6C3E18] opacity-40"></div>
-      <div className="absolute top-[40%] left-0 w-full h-14 bg-gradient-to-r from-[#EFEBE2] via-[#DAAF88] to-[#6C3E18] opacity-30"></div>
-      <div className="absolute top-[55%] left-0 w-full h-14 bg-gradient-to-r from-[#EFEBE2] via-[#DAAF88] to-[#6C3E18] opacity-20"></div>
-      <div className="absolute top-[70%] left-0 w-full h-14 bg-gradient-to-r from-[#EFEBE2] via-[#DAAF88] to-[#6C3E18] opacity-10"></div>
-      <div className="absolute top-[85%] right-0 w-1/2 h-14 bg-gradient-to-r from-[#EFEBE2] via-[#DAAF88] to-[#6C3E18] opacity-10"></div>
-      {/* Main Content */}
-      <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-6xl mt-16">
-        <div className="w-full md:w-1/2 text-center">
-          <h2 className="text-4xl md:text-7xl text-left font-Convergence text-[#4C2E15] drop-shadow-lg leading-10">
-            CONFIDENCE THROUGH <br /> PRACTICE
-          </h2>
-          <p className="mt-4 text-lg md:text-2xl font-Antic text-left text-[#6C3E18]">
-            Train with AI, refine your responses, and <br /> build confidence
-            for your next <br /> interview.
-          </p>
 
-          {/* 🚀 Login Button with Navigation */}
-          <div className="w-full flex justify-center">
-            <button
-              onClick={() => router.push("/signin")}  // ✅ Navigates to Login Page
-              className="z-10 mt-8 w-48 md:w-64 h-12 md:h-16 bg-gradient-to-r from-[#EFEBE2] via-[#DAAF88] to-[#6C3E18] shadow-lg flex justify-center items-center rounded-md cursor-pointer hover:opacity-80 transition"
-            >
-              <p className="text-lg md:text-2xl font-Antic text-white ">Login</p>
-            </button>
+            <h2 className="mt-5 font-Convergence text-4xl leading-[1.06] text-[#4C2E15] md:text-7xl">
+              Confidence Through Practice
+            </h2>
+
+            <p className="mt-5 max-w-xl font-Antic text-xl leading-relaxed text-[#6C3E18] md:text-2xl">
+              Train with realistic mock interviews, improve delivery, and step
+              into your next interview fully prepared.
+            </p>
+
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
+              <button
+                onClick={() => router.push("/signin")}
+                className="inline-flex h-12 items-center justify-center rounded-full bg-[#5E3D22] px-8 font-Antic text-xl text-white shadow-[0_14px_30px_-20px_rgba(67,37,13,0.8)] transition duration-200 hover:bg-[#492b14]"
+              >
+                Get Started
+              </button>
+            </div>
           </div>
-        </div>
 
-        {/* Right Side: Image */}
-        <div className="w-full md:w-1/2 flex justify-center md:justify-center mt-10 md:mt-0">
-          <Image
-            src="/professionalwoman.png"
-            alt="Professional Woman"
-            width={604}
-            height={906}
-            className="w-auto h-auto drop-shadow-md"
-          />
-        </div>
+          <div className="relative mx-auto w-full max-w-[520px]">
+            <div className="pointer-events-none absolute left-1/2 top-1/2 h-[82%] w-[82%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-[#EFEBE2] via-[#DAAF88]/70 to-[#6C3E18]/35 blur-2xl" />
+            <div className="relative h-[390px] md:h-[600px]">
+              <Image
+                src="/professionalwoman.png"
+                alt="Professional woman prepared for interview"
+                fill
+                className="object-contain object-bottom drop-shadow-[0_22px_36px_rgba(67,37,13,0.32)]"
+                priority
+              />
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );
