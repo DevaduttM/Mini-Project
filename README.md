@@ -51,7 +51,7 @@ AI-assisted interview practice platform with a Flask backend (video, audio, and 
 The backend has a PowerShell script that installs dependencies, verifies prerequisites, starts Ollama, pulls the model, and runs the API.
 
 ```powershell
-cd "d:\MEC\College Projects\Mini Project\Program\Mini-Project\backend"
+cd "backend"
 .\setup_and_run_backend.ps1
 ```
 
@@ -65,7 +65,7 @@ If you need to specify the Python launcher:
 If you prefer to run steps manually:
 
 ```powershell
-cd "d:\MEC\College Projects\Mini Project\Program\Mini-Project\backend"
+cd "backend"
 py -m venv .venv
 .\.venv\Scripts\python.exe -m pip install --upgrade pip
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
@@ -95,7 +95,7 @@ If these are missing, the API will fail when running predictions.
 ### Install and Run
 
 ```powershell
-cd "d:\MEC\College Projects\Mini Project\Program\Mini-Project\frontend"
+cd "frontend"
 npm install
 npm run dev
 ```
