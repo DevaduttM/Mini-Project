@@ -5,6 +5,7 @@ import { CloudUpload } from "lucide-react";
 const UploadPage = () => {
   const [file, setFile] = useState("");
   const fileInputRef = useRef("");
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000";
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -15,7 +16,7 @@ const UploadPage = () => {
     const formData = new FormData();
     formData.append("file", file);
     try {
-      const response = await fetch("http://localhost:5000/upload", {
+      const response = await fetch(`${apiBaseUrl}/uploadvideo`, {
         method: "POST",
         body: formData,
       });

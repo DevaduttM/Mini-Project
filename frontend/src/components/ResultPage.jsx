@@ -6,6 +6,7 @@ import Progress from './Progress'
 import ProgressBar from './ProgressBar'
 
 const ResultPage = () => {
+    const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000";
 
     const [initial, setInitial] = useState(true);
     const [loading, setLoading] = useState(false);
@@ -14,7 +15,7 @@ const ResultPage = () => {
     const generateResults = async () => {
         try{
             setLoading(true);
-            const response = await axios.get('http://localhost:5000/results');
+            const response = await axios.get(`${apiBaseUrl}/results`);
             console.log("Results:", response.data);
             setResults(Object.values(response.data));
             setLoading(false);

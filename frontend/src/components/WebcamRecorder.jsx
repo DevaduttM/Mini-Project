@@ -5,6 +5,7 @@ import Loading from "./Loading";
 import { useRouter } from "next/navigation";
 
 const VideoRecorder = ({ message }) => {
+  const apiBaseUrl = process.env.NEXT_PUBLIC_API_BASE_URL || "http://localhost:5000";
   const videoRef = useRef(null);
   const mediaRecorderRef = useRef(null);
   const [capturing, setCapturing] = useState(false);
@@ -165,7 +166,7 @@ const VideoRecorder = ({ message }) => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5000/uploadvideo",
+        `${apiBaseUrl}/uploadvideo`,
         formData,
         {
           headers: {
@@ -198,7 +199,7 @@ const VideoRecorder = ({ message }) => {
   
     try {
       setLoadingQn(true);
-      const response = await axios.get("http://127.0.0.1:5000/question", {
+      const response = await axios.get(`${apiBaseUrl}/question`, {
         params: { job_role: jobRole }, 
       });
       const payload = response?.data?.questions;
